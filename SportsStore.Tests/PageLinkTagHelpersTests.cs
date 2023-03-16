@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SportsStore.Tests.InfrastructureTests
+namespace SportsStore.Tests
 {
     public class PageLinkTagHelpersTests
     {
@@ -24,14 +24,14 @@ namespace SportsStore.Tests.InfrastructureTests
                 .Returns("Test/Page1")
                 .Returns("Test/Page2")
                 .Returns("Test/Page3");
-            var urlHelperFactory = new Mock<IUrlHelperFactory>();   
+            var urlHelperFactory = new Mock<IUrlHelperFactory>();
             urlHelperFactory.Setup(f =>
             f.GetUrlHelper(It.IsAny<ActionContext>()))
                 .Returns(urlHelper.Object);
 
             PageLinkTagHelper helper = new PageLinkTagHelper(urlHelperFactory.Object)
             {
-                PageModel = new Models.ViewModels.PagingInfo
+                PageModel = new PagingInfo
                 {
                     CurrentPage = 2,
                     TotalItems = 28,
@@ -94,10 +94,10 @@ namespace SportsStore.Tests.InfrastructureTests
                 new Product {ProductId = 5, Name = "P5"}
             }).AsQueryable());
 
-            ProductController controller = 
+            ProductController controller =
                 new ProductController(mock.Object) { PageSize = 3 };
 
-            ProductsListViewModel result = 
+            ProductsListViewModel result =
                 controller.List(null, 2).ViewData?.Model as ProductsListViewModel;
 
             PagingInfo pageInfo = result.PagingInfo;
@@ -117,18 +117,18 @@ namespace SportsStore.Tests.InfrastructureTests
                 new Product {ProductId = 3, Name = "P3", Category = "Cat1"},
                 new Product {ProductId = 4, Name = "P4", Category = "Cat2"},
                 new Product {ProductId = 5, Name = "P5", Category = "Cat3"}
-            }).AsQueryable<Product>());
+            }).AsQueryable());
 
 
             ProductController controller = new ProductController(mock.Object);
             controller.PageSize = 3;
 
-           
+
             Product[] result =
                 (controller.List("Cat2", 1).ViewData.Model as ProductsListViewModel)
                     .Products.ToArray();
 
-           
+
             Assert.Equal(2, result.Length);
             Assert.True(result[0].Name == "P2" && result[0].Category == "Cat2");
             Assert.True(result[1].Name == "P4" && result[1].Category == "Cat2");
