@@ -141,3 +141,5 @@ E:\Programming\VisualStudioProjects\SportsStoreProject\SportsStore.Tests\obj\Deb
 E:\Programming\VisualStudioProjects\SportsStoreProject\SportsStore.Tests\obj\Debug\net6.0\SportsStore.Tests.pdb
 E:\Programming\VisualStudioProjects\SportsStoreProject\SportsStore.Tests\obj\Debug\net6.0\SportsStore.Tests.genruntimeconfig.cache
 E:\Programming\VisualStudioProjects\SportsStoreProject\SportsStore.Tests\obj\Debug\net6.0\ref\SportsStore.Tests.dll
+E:\Programming\VisualStudioProjects\SportsStoreProject\SportsStore.Tests\bin\Debug\net6.0\libman.json
+E:\Programming\VisualStudioProjects\SportsStoreProject\SportsStore.Tests\bin\Debug\net6.0\SportsStore.staticwebassets.runtime.json
