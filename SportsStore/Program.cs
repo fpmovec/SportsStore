@@ -8,10 +8,16 @@ builder.Services.AddTransient<IProductRepository, EFProductRepository>();
 builder.Services.AddDbContext<ApplicationDbContext>
 (
     o => o.UseSqlServer(ConfigurationExtensions.GetConnectionString(builder.Configuration, "ProductConnection")));
+
+
+builder.Services.AddMemoryCache();
+builder.Services.AddSession();
+
 var app = builder.Build();
 app.Services.CreateScope();
 app.UseDeveloperExceptionPage();
 app.UseStaticFiles();
+app.UseSession();
 app.UseStatusCodePages();
 app.UseMvc(routes => {
     routes.MapRoute(
