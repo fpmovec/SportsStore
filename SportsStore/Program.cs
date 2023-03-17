@@ -7,6 +7,7 @@ builder.Services.AddMvc(o => o.EnableEndpointRouting = false);
 builder.Services.AddTransient<IProductRepository, EFProductRepository>();
 builder.Services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddTransient<IOrderRepository, EFOrderRepository>();
 builder.Services.AddDbContext<ApplicationDbContext>
 (
     o => o.UseSqlServer(ConfigurationExtensions.GetConnectionString(builder.Configuration, "ProductConnection")));
