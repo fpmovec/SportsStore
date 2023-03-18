@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SportsStore.Models;
 
@@ -11,7 +12,11 @@ builder.Services.AddTransient<IOrderRepository, EFOrderRepository>();
 builder.Services.AddDbContext<ApplicationDbContext>
 (
     o => o.UseSqlServer(ConfigurationExtensions.GetConnectionString(builder.Configuration, "ProductConnection")));
-
+builder.Services.AddDbContext<AppIdentityDbContext>(
+    o => o.UseSqlServer(ConfigurationExtensions.GetConnectionString(builder.Configuration, "IdentityConnection")));
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<AppIdentityDbContext>()
+    .AddDefaultTokenProviders();
 
 builder.Services.AddMemoryCache();
 builder.Services.AddSession();
@@ -22,6 +27,7 @@ app.UseDeveloperExceptionPage();
 app.UseStaticFiles();
 app.UseSession();
 app.UseStatusCodePages();
+app.UseAuthentication();
 app.UseMvc(routes => {
     routes.MapRoute(
                     name: null,

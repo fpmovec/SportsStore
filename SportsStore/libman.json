@@ -10,6 +10,18 @@
       "provider": "cdnjs",
       "library": "font-awesome@6.3.0",
       "destination": "wwwroot/lib/font-awesome/"
+    },
+    {
+      "library": "jquery@3.6.4",
+      "destination": "wwwroot/lib/jquery/"
+    },
+    {
+      "library": "jquery-validation@1.19.5",
+      "destination": "wwwroot/lib/jquery-validation/"
+    },
+    {
+      "library": "jquery-validation-unobtrusive@4.0.0",
+      "destination": "wwwroot/lib/jquery-validation-unobtrusive/"
     }
   ]
 }

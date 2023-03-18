@@ -67,6 +67,9 @@ namespace SportsStore.Migrations
                     b.Property<bool>("GiftWrap")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsShipped")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Line1")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
